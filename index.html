@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tic Tac Toe - Start</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#1e3c72,#2a5298,#0f2027,#203a43);
+    background-size:400% 400%;
+    animation:gradientMove 10s ease infinite;
+    overflow:hidden;
+}
+
+/* Animated Background */
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(15px);
+    padding:60px 80px;
+    border-radius:20px;
+    text-align:center;
+    color:white;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    animation:fadeIn 1s ease;
+}
+
+h1{
+    font-size:40px;
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+p{
+    font-size:16px;
+    margin-bottom:30px;
+    opacity:0.9;
+}
+
+/* Button */
+button{
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:linear-gradient(45deg,#ff416c,#ff4b2b);
+    color:white;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Loading Screen */
+.loading-screen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#111;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:white;
+    opacity:0;
+    visibility:hidden;
+    transition:0.5s;
+}
+
+.loading-screen.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* Progress Bar */
+.progress-container{
+    width:300px;
+    height:10px;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#00f260,#0575e6);
+    transition:width 0.2s;
+}
+
+/* Fade animation */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🎮 Tic Tac Toe</h1>
+    <p>Ready to challenge your friend?</p>
+    <button onclick="startGame()">Get Started</button>
+</div>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading">
+    <h2>Loading Game...</h2>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress"></div>
+    </div>
+</div>
+
+<script>
+
+function startGame(){
+    const loading = document.getElementById("loading");
+    const progress = document.getElementById("progress");
+
+    loading.classList.add("active");
+
+    let width = 0;
+    let interval = setInterval(function(){
+        if(width >= 100){
+            clearInterval(interval);
+            window.location.href = "home.html";
+        } else {
+            width += 2;
+            progress.style.width = width + "%";
+        }
+    }, 40);
+}
+
+</script>
+
+</body>
+</html>
