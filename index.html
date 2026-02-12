@@ -15,7 +15,7 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -23,6 +23,7 @@ body{
     background-size:400% 400%;
     animation:gradientMove 10s ease infinite;
     overflow:hidden;
+    padding:20px;
 }
 
 /* Animated Background */
@@ -33,9 +34,11 @@ body{
 }
 
 .container{
+    width:100%;
+    max-width:500px;
     background:rgba(255,255,255,0.1);
     backdrop-filter:blur(15px);
-    padding:60px 80px;
+    padding:clamp(30px,5vw,60px);
     border-radius:20px;
     text-align:center;
     color:white;
@@ -44,21 +47,23 @@ body{
 }
 
 h1{
-    font-size:40px;
+    font-size:clamp(28px,5vw,40px);
     margin-bottom:20px;
     letter-spacing:2px;
 }
 
 p{
-    font-size:16px;
+    font-size:clamp(14px,3.5vw,16px);
     margin-bottom:30px;
     opacity:0.9;
 }
 
 /* Button */
 button{
-    padding:12px 30px;
-    font-size:18px;
+    width:100%;
+    max-width:250px;
+    padding:12px 20px;
+    font-size:clamp(16px,4vw,18px);
     border:none;
     border-radius:30px;
     cursor:pointer;
@@ -88,6 +93,8 @@ button:hover{
     opacity:0;
     visibility:hidden;
     transition:0.5s;
+    padding:20px;
+    text-align:center;
 }
 
 .loading-screen.active{
@@ -97,7 +104,8 @@ button:hover{
 
 /* Progress Bar */
 .progress-container{
-    width:300px;
+    width:80%;
+    max-width:400px;
     height:10px;
     background:#333;
     border-radius:20px;
@@ -118,6 +126,12 @@ button:hover{
     to{opacity:1; transform:translateY(0);}
 }
 
+/* Extra small devices */
+@media (max-width:350px){
+    h1{
+        letter-spacing:1px;
+    }
+}
 </style>
 </head>
 
@@ -138,7 +152,6 @@ button:hover{
 </div>
 
 <script>
-
 function startGame(){
     const loading = document.getElementById("loading");
     const progress = document.getElementById("progress");
@@ -156,7 +169,6 @@ function startGame(){
         }
     }, 40);
 }
-
 </script>
 
 </body>
